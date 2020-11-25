@@ -1,0 +1,11 @@
+{
+	"runtime": "nodejs12.x",
+	"version": "1.0",
+	"secrets": ["api_key"],
+	"endpoints": {
+		"tables/create": {
+			"method": "POST",
+			"file": "createTable.js"
+		}
+	}
+}
