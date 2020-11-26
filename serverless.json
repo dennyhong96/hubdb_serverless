@@ -14,6 +14,10 @@
 		"tables/drafts": {
 			"method": "GET",
 			"file": "listDraftTables.js"
+		},
+		"tables/live/detail": {
+			"method": "GET",
+			"file": "getLiveTable.js"
 		}
 	}
 }

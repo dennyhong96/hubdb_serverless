@@ -1,7 +1,5 @@
 const axios = require("axios");
 
-const API_URL = `https://api.hubapi.com/cms/v3/hubdb/tables?hapikey=${process.env.api_key}&sort=name`;
-
 // Checks if axios error and handles accordingly
 const formatError = (err) => ({
 	body: {
@@ -12,8 +10,12 @@ const formatError = (err) => ({
 
 exports.main = async (context, sendResponse) => {
 	try {
-		const { data } = await axios.get(API_URL);
+		const { table_name } = context.params;
+		if (!table_name) throw new Error("table_name query parameter is required.");
 
+		const apiUrl = `https://api.hubapi.com/cms/v3/hubdb/tables/${table_name}?hapikey=${process.env.api_key}`;
+
+		const { data } = await axios.get(apiUrl);
 		sendResponse({ body: { data }, statusCode: 200 });
 	} catch (error) {
 		sendResponse(formatError(error));
