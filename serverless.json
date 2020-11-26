@@ -6,6 +6,10 @@
 		"tables/create": {
 			"method": "POST",
 			"file": "createTable.js"
+		},
+		"tables/live": {
+			"method": "GET",
+			"file": "listLiveTables.js"
 		}
 	}
 }

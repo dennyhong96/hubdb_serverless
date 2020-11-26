@@ -4,15 +4,39 @@ const API_URL = `https://api.hubapi.com/cms/v3/hubdb/tables?hapikey=${process.en
 
 exports.main = async (context, sendResponse) => {
 	try {
-		const headers = {
-			accept: "application/json",
-			"content-type": "application/json",
-		};
+		const { data } = await axios.post(API_URL, context.body);
 
-		const { data } = await axios.post(API_URL, context.body, { headers });
+		// context.params
+		// context.body
+		// context.accountId
+		// context.limits
+
+		// secrets created using the CLI are available in the environment variables.
+		// process.env.secretName
 
 		sendResponse({ body: { data }, statusCode: 200 });
 	} catch (error) {
-		sendResponse({ body: { message: error.message }, statusCode: 400 });
+		sendResponse({ body: { error: error.message }, statusCode: 500 });
 	}
 };
+
+// JSON Body:
+/*
+{
+	"dynamicMetaTags": {},
+	"allowPublicApiAccess": true,
+	"useForPages": false,
+	"columns": [
+			{
+					"name": "salary",
+					"label": "Salary",
+					"archived": false,
+					"type": "TEXT"
+			}
+	],
+	"name": "employee",
+	"enableChildTablePages": false,
+	"label": "Employee",
+	"allowChildTables": false
+}
+*/
