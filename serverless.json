@@ -10,6 +10,10 @@
 		"tables/live": {
 			"method": "GET",
 			"file": "listLiveTables.js"
+		},
+		"tables/drafts": {
+			"method": "GET",
+			"file": "listDraftTables.js"
 		}
 	}
 }
